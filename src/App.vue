@@ -1,9 +1,15 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router';
+// import { RouterView } from 'vue-router';
+import FrontView from './views/FrontView.vue';
+import FrontNavbar from './components/FrontNavbar.vue';
+
+// import { RouterLink, RouterView } from 'vue-router';
 </script>
 
 <template>
-  <header>
+  <FrontNavbar />
+  <FrontView />
+  <!-- <header>
 
     <div class="wrapper">
 
@@ -14,10 +20,10 @@ import { RouterLink, RouterView } from 'vue-router';
     </div>
   </header>
 
-  <RouterView />
+  <RouterView /> -->
 </template>
 
-<style scoped>
+<!-- <style scoped>
 header {
   line-height: 1.5;
   max-height: 100vh;
@@ -79,4 +85,4 @@ nav a:first-of-type {
     margin-top: 1rem;
   }
 }
-</style>
+</style> -->
