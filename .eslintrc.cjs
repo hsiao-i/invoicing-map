@@ -23,4 +23,7 @@ module.exports = {
       '@vitejs/plugin-vue',
     ],
   },
+  rules: {
+    'max-len': ['error', { code: 180 }],
+  },
 };

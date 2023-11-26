@@ -18,11 +18,6 @@ const router = createRouter({
           name: 'voteMap',
           component: () => import('../views/VoteMap.vue'),
         },
-        {
-          path: 'votePage',
-          name: 'votePage',
-          component: () => import('../views/VotePage.vue'),
-        },
       ],
     },
   ],
