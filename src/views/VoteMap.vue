@@ -1,234 +1,245 @@
 <script setup>
-// import axios from 'axios';
-import { onMounted } from 'vue';
-import * as d3 from 'd3';
-import * as topojson from 'topojson-client';
+import {
+  onMounted, ref, computed, provide,
+} from 'vue';
+import axios from 'axios';
+import Swal from 'sweetalert2';
+import MapShow from '../components/MapShow.vue';
+import ProgressPercentage from '../components/ProgressPercentage.vue';
 
-// const taiwanCountyData = ref([]);
-// const getTaiwanCounty = async () => {
-//   try {
-//     const res = await axios.get('src/jsonData/taiwanCounty_topojson.json');
-//     taiwanCountyData.value = res.data;
-//     console.log(taiwanCountyData.value);
-//   } catch (err) {
-//     console.log(err);
-//   }
-// };
-// const mapSvg = d3.select('svg.map');
+/**
+ * @typedef {Object} CountyData
+ * @property {string} county - 縣市名稱
+ * @property {number} orangePartyVotes - 親民黨的票數
+ * @property {number} bluePartyVotes - 國民黨的票數
+ * @property {number} greenPartyVotes - 民進黨的票數
+ * @property {number} orangePartyVotesPercentage - 親民黨的票數百分比
+ * @property {number} bluePartyVotesPercentage - 國民黨的票數百分比
+ * @property {number} greenPartyVotesPercentage - 民進黨的票數百分比
+ */
+/** 縣市投票資料
+ * @type {Array<CountyData>} CountyVotes
+ */
+const countyVotesData = ref([]);
 
-// const zoomed = function () {
-//   const mapSvg = d3.select('svg.map');
-//   mapSvg.attr('transform', d3.zoomTransform(this));
-// };
+const allCountyData = ref([]);
+const selectedCounty = ref('');
+const selectedArea = ref('');
 
-// const zoom = () => {
-//   d3.zoom()
-//     .scaleExtent([1, 10]) // 可放大倍率
-//     .on('zoom', zoomed);
-// };
-
-/** 地圖縮放 */
-// const zoomMap = (mapSvg) => {
-//   const zoomed = function () {
-//     mapSvg.attr('transform', d3.zoomTransform(this));
-//   };
-
-//   const zoom = d3.zoom()
-//     .scaleExtent([1, 6])
-//     .on('zoom', zoomed);
-
-//   mapSvg.call(zoom);
-// };
-const height = 500;
-const width = 500;
-
-/** 繪製台灣地圖 */
-const drawTaiwanCounty = () => {
-  const projection = d3.geoMercator()
-    .center([123, 24])
-    .scale(5000);
-    // .translate([width / 2, height / 2]);
-
-  const path = d3.geoPath(projection);
-
-  const mapSvg = d3.select('svg.map');
-
-  // function zoomed() {
-  //   // const mapSvg = d3.select('svg.map');
-  //   mapSvg.attr('transform', d3.zoomTransform(this));
-  // }
-
-  // // const zoom = () => {
-  // function zoom() {
-  //   d3.zoom()
-  //     .scaleExtent([1, 10]) // 可放大倍率
-  //     .on('zoom', zoomed);
-  // }
-
-  // function clicked(event, d) {
-  //   const [[x0, y0], [x1, y1]] = d3.geoPath().bounds(d);
-  //   event.stopPropagation();
-  //   mapSvg.selectAll('path').transition().style('fill', null);
-  //   d3.select(this).transition().style('fill', 'pink');
-  //   mapSvg.transition().duration(750).call(
-  //     zoom.transform,
-  //     d3.zoomIdentity
-  //       .translate(width / 2, height / 2)
-  //       .scale(Math.min(8, 0.9 / Math.max((x1 - x0) / width, (y1 - y0) / height)))
-  //       .translate(-(x0 + x1) / 2, -(y0 + y1) / 2),
-  //     d3.pointer(event, mapSvg.node()),
-  //   );
-  // }
-
-  // 顯示地圖上縣市
-  d3.json('/jsonData/taiwanCounty_topojson.json').then((data) => {
-    console.log(data);
-    const geometries = topojson.feature(data, data.objects.COUNTY_MOI_1090820);
-
-    const mapOfCounty = mapSvg
-      .append('g')
-      .selectAll('path')
-      .data(geometries.features)
-      .join('path')
-      .attr('fill', '#69b3a2')
-      .attr('d', path)
-      .style('stroke', '#fff')
-      .attr('county-name', (d) => d.properties.COUNTYNAME);
-    // .on('click', (event, d) => clicked(event, d));
-
-    function zoomed() {
-      // mapSvg.attr('transform', event.transform);
-      mapSvg.attr('transform', d3.zoomTransform(this).toString());
-    }
-    const zoom = d3.zoom().scaleExtent([1, 10]).on('zoom', zoomed);
-    mapSvg.call(zoom);
-    // function zoomed() {
-    // // const mapSvg = d3.select('svg.map');
-    //   mapSvg.attr('transform', d3.zoomTransform(this));
-    // }
-
-    // // const zoom = () => {
-    // function zoom() {
-    //   d3.zoom()
-    //     .scaleExtent([1, 10]) // 可放大倍率
-    //     .on('zoom', zoomed);
-
-    //   mapSvg.call(zoom);
-    // }
-
-    function clicked(event, d) {
-      const [[x0, y0], [x1, y1]] = d3.geoPath().bounds(d);
-      event.stopPropagation();
-      mapOfCounty.transition().style('fill', null);
-      d3.select(this).transition().style('fill', 'pink');
-
-      const [targetX, targetY] = d3.pointer(event, mapSvg.node());
-      console.log(targetX, targetY);
-
-      mapSvg.transition().duration(750).call(
-        zoom.transform,
-        d3.zoomIdentity
-          .translate(width / 2, height / 2)
-          .scale(Math.min(6.5, 0.9 / Math.max((x1 - x0) / width, (y1 - y0) / height)))
-          .translate((-(x0 + x1) / 2) + 50, (-(y0 + y1) / 2) - 100),
-        // .translate(-targetX + 230, -targetY + 210),
-        // d3.pointer(event, mapSvg.node()),
-      );
-    }
-
-    mapOfCounty.on('click', clicked);
-
-    function reset() {
-      mapOfCounty.transition().style('fill', null);
-      mapSvg.transition().duration(750).call(
-        zoom.transform,
-        d3.zoomIdentity,
-        d3.zoomTransform(mapSvg.node()).invert([width / 2, height / 2]),
-      );
-    }
-    mapSvg.on('click', reset);
-    // mapOfCounty.on('click', (event, d) => clicked(event, d));
-
-    // mapSvg.call(zoom);
-    // mapSvg.on('click', (event, d) => clicked(event, d));
-  });
-
-  // 顯示地圖上鄉里
-  d3.json('/jsonData/taiwanTown_topojson.json').then((data) => {
-    const geometries = topojson.feature(data, data.objects.TOWN_MOI_1120825);
-    mapSvg
-      .append('g')
-      .selectAll('path')
-      .data(geometries.features)
-      .join('path')
-      .attr('fill', '#69b3a2')
-      .attr('d', path)
-      .style('stroke', '#d9d9d9')
-      .attr('town-name', (d) => d.properties.TOWNNAME)
-      .attr('county-of-town', (d) => d.properties.COUNTYNAME)
-      .style('display', 'none');
-  });
-
-  // zoomMap(mapSvg);
-  // clickAndZoomInMap(500, 500);
-
-  // const zoomed = function () {
-  // function zoomed() {
-  //   // const mapSvg = d3.select('svg.map');
-  //   mapSvg.attr('transform', d3.zoomTransform(this));
-  // }
-
-  // // const zoom = () => {
-  // function zoom() {
-  //   d3.zoom()
-  //     .scaleExtent([1, 10]) // 可放大倍率
-  //     .on('zoom', zoomed);
-  // }
-
-  // mapSvg.call(zoom);
-
-  // function clicked(event, d) {
-  //   const [[x0, y0], [x1, y1]] = d3.geoPath().bounds(d);
-  //   event.stopPropagation();
-  //   mapSvg.selectAll('path').transition().style('fill', null);
-  //   d3.select(this).transition().style('fill', 'pink');
-  //   mapSvg.transition().duration(750).call(
-  //     zoom.transform,
-  //     d3.zoomIdentity
-  //       .translate(width / 2, height / 2)
-  //       .scale(Math.min(8, 0.9 / Math.max((x1 - x0) / width, (y1 - y0) / height)))
-  //       .translate(-(x0 + x1) / 2, -(y0 + y1) / 2),
-  //     d3.pointer(event, mapSvg.node()),
-  //   );
-  // }
-
-  // mapSvg.on('click', (event, d) => clicked(event, d));
+const getAllCounty = async () => {
+  try {
+    const res = await axios.get('/jsonData/AllCountyData.json');
+    console.log(res.data);
+    allCountyData.value = res.data;
+  } catch {
+    Swal.fire({ text: '縣市列表資料載入失敗', icon: 'error' });
+  }
 };
 
-// const zoomed = () => {
-//   const mapSvg = d3.select('svg.map');
-//   mapSvg.attr('transform', d3.zoomTransform(this));
-// };
+onMounted(() => {
+  getAllCounty();
+});
 
-// const zoom = () => {
-//   d3.zoom()
-//     .scaleExtent([1, 8])
-//     .on('zoom', zoomed);
-// };
+/** 下拉選單，依照縣市顯示區 */
+const filterArea = computed(() => {
+  if (selectedCounty.value) {
+    const filter = allCountyData.value.find(
+      (county) => county.CityName === selectedCounty.value,
+    );
+    return filter;
+  }
+  return '';
+});
+
+/** 取得選舉得票數資料 */
+const getCountyVotes = async () => {
+  try {
+    const res = await axios.get('/jsonData/votingResult.json');
+    countyVotesData.value = res.data;
+    console.log(countyVotesData.value);
+  } catch {
+    Swal.fire({ text: '選舉票數資料載入失敗', icon: 'error' });
+  }
+};
 
 onMounted(() => {
-  // getTaiwanCounty();
-  drawTaiwanCounty();
+  getCountyVotes();
 });
+
+/** 整數轉為千分位 */
+const toThousands = (num) => {
+  const numStr = num.toString();
+  const pattern = /(\d)(?=(?:\d{3})+(?!\d))/g;
+  return numStr.replace(pattern, '$1,');
+};
+
+provide('toThousands', toThousands);
+
+/** 格式化選舉資料，數字加千分位、小數點後兩位 */
+const formattedCountyVotesData = computed(() => {
+  const formattedData = countyVotesData.value.map((county) => ({
+    county: county.county,
+    orangePartyVotesNum: toThousands(county.orangePartyVotesNum),
+    bluePartyVotesNum: toThousands(county.bluePartyVotesNum),
+    greenPartyVotesNum: toThousands(county.greenPartyVotesNum),
+    orangePartyVotesPercentage: county.orangePartyVotesPercentage.toFixed(1),
+    bluePartyVotesPercentage: county.bluePartyVotesPercentage.toFixed(1),
+    greenPartyVotesPercentage: county.greenPartyVotesPercentage.toFixed(1),
+  }));
+  console.log(formattedData);
+  return formattedData;
+});
+
+const nationWorldVotesData = computed(() => formattedCountyVotesData.value.find((county) => county.county === '全國'));
+
 </script>
 <template>
-  <div class="container mx-auto">
-    <svg width="500" height="500" viewBox="0 0 500 500"
-    style="border: 1px solid #fff;" class="map bg-gray-100">
-    </svg>
-    <h1 class="text-3xl font-bold underline " >
-    Hello world!
-    </h1>
+  <div class="container mx-auto px-3 py-10" id="check-2">
+    <div class="flex flex-col md:flex-row gap-3">
+      <div class="w-full md:w-1/3">
+        <div class="border-2 border-black">
+          <p class="text-center py-2 border-b-2 border-black">全台</p>
+          <div class="p-5 border-b-2 border-black">
+            <div class="w-full translate-y-2/4 relative">
+              <template v-if="nationWorldVotesData">
+
+                <div
+                  class="flex h-6 mb-4 overflow-hidden text-xs bg-teal-200 rounded-full "
+                >
+                  <div
+                    :style="`width: ${nationWorldVotesData.greenPartyVotesPercentage}%`"
+                    class="shadow-none flex flex-col text-center whitespace-nowrap
+                     justify-center bg-green-500 text-white "
+                  >
+                    <p class="cursor-default">
+
+                      {{ nationWorldVotesData.greenPartyVotesPercentage }}%
+                    </p>
+                  </div>
+                  <div
+                    :style="`width: ${nationWorldVotesData.bluePartyVotesPercentage}%`"
+                    class="shadow-none flex flex-col text-center whitespace-nowrap text-white
+                    justify-center bg-blue-500"
+                  >
+                    <p class="cursor-default">
+
+                      {{ nationWorldVotesData.bluePartyVotesPercentage }}%
+                    </p>
+                  </div>
+                  <div
+                    :style="`width: ${nationWorldVotesData.orangePartyVotesPercentage}%`"
+                    class="shadow-none flex flex-col text-center whitespace-nowrap
+                    text-white justify-center bg-orange-500 text-white"
+                  >
+                  <p class="cursor-default">
+                    {{ nationWorldVotesData.orangePartyVotesPercentage }}%
+                  </p>
+                  </div>
+                </div>
+              </template>
+            </div>
+            <ul v-if="nationWorldVotesData" class="mt-7">
+              <li class="flex justify-between items-center py-1">
+                <div class="w-2/12">
+                  <img src="../assets/images/greenCirclePortrait.png" alt="蔡英文圓形肖像" width="42"/>
+                </div>
+                <p class="w-5/12">蔡英文得票率</p>
+                <p class="w-5/12 text-end text-green-500">
+                  {{ nationWorldVotesData.greenPartyVotesNum }}
+                </p>
+              </li>
+              <li class="flex justify-between items-center py-1">
+                <div class="w-2/12">
+                  <img src="../assets/images/blueCirclePortrait.png" alt="蔡英文圓形肖像" width="42"/>
+                </div>
+                <p class="w-5/12">韓國瑜得票率</p>
+                <p class="w-5/12 text-end text-blue-500">
+                  {{ nationWorldVotesData.bluePartyVotesNum }}
+                </p>
+              </li>
+              <li class="flex justify-between items-center py-1">
+                <div class="w-2/12">
+                  <img src="../assets/images/orangeCirclePortrait.png" alt="蔡英文圓形肖像" width="42"/>
+                </div>
+                <p class="w-5/12">宋楚瑜得票率</p>
+                <p class="w-5/12 text-end text-orange-500">
+                  {{ nationWorldVotesData.orangePartyVotesNum }}
+                </p>
+              </li>
+
+            </ul>
+          </div>
+          <div>
+            <div class="flex text-gray-400 py-2">
+              <p class="w-1/5 text-center">縣市</p>
+              <p class="w-4/5 text-center">得票占比</p>
+            </div>
+            <div class="overflow-auto">
+              <div class="h-[43vh] p-3">
+                <ProgressPercentage
+                  v-for="item in countyVotesData"
+                  :key="item.county"
+                  :singleCountyVotesData="item"
+                >
+                  <p class="w-1/5">{{ item.county }}</p>
+                </ProgressPercentage>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="w-full md:w-2/3">
+        <div
+          class="flex items-center justify-center border-x-2 border-t-2 border-black pt-1 mb-3"
+        >
+          <div class="w-1/5">
+            <label for="countySelect" class="text-center block">搜尋鄰里</label>
+          </div>
+          <div class="mr-3">
+            <select
+              name="countySelect"
+              id="countySelect"
+              v-model="selectedCounty"
+              placeholder="請選擇縣市"
+              class="border-l-2 border-b-2 border-black h-9 w-full text-center"
+            >
+              <option value="">請選擇縣市</option>
+              <option v-for="county in allCountyData" :key="county.CityName">
+                {{ county.CityName }}
+              </option>
+            </select>
+          </div>
+          <div class="w-1/5">
+            <!-- <label for="">區</label> -->
+            <select
+              name="townSelect"
+              id="townSelect"
+              v-model="selectedArea"
+              placeholder="請選擇區"
+              class="border-l-2 border-b-2 border-black h-9 w-full text-center"
+            >
+              <option value="">請選擇區</option>
+              <option v-for="area in filterArea?.AreaList" :key="area.ZipCode">
+                {{ area.AreaName }}
+              </option>
+            </select>
+          </div>
+          <div class="ml-3 w-1/5">
+            <button
+              type="button"
+              class="flex justify-center items-center w-full"
+            >
+              <span class="material-icons mr-1">search</span>
+              <span class="material-icons-outlined">info</span>
+            </button>
+          </div>
+        </div>
+        <div class="bg-gray-100">
+          <MapShow :countyVotesData="countyVotesData"
+          ></MapShow>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 <style scope>
