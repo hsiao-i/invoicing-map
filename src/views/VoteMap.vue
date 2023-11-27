@@ -140,7 +140,7 @@ const nationWorldVotesData = computed(() => formattedCountyVotesData.value.find(
                 <div class="w-2/12">
                   <img src="../assets/images/greenCirclePortrait.png" alt="蔡英文圓形肖像" width="42"/>
                 </div>
-                <p class="w-5/12">蔡英文得票率</p>
+                <p class="w-5/12">蔡英文得票數</p>
                 <p class="w-5/12 text-end text-green-500">
                   {{ nationWorldVotesData.greenPartyVotesNum }}
                 </p>
@@ -149,7 +149,7 @@ const nationWorldVotesData = computed(() => formattedCountyVotesData.value.find(
                 <div class="w-2/12">
                   <img src="../assets/images/blueCirclePortrait.png" alt="蔡英文圓形肖像" width="42"/>
                 </div>
-                <p class="w-5/12">韓國瑜得票率</p>
+                <p class="w-5/12">韓國瑜得票數</p>
                 <p class="w-5/12 text-end text-blue-500">
                   {{ nationWorldVotesData.bluePartyVotesNum }}
                 </p>
@@ -158,7 +158,7 @@ const nationWorldVotesData = computed(() => formattedCountyVotesData.value.find(
                 <div class="w-2/12">
                   <img src="../assets/images/orangeCirclePortrait.png" alt="蔡英文圓形肖像" width="42"/>
                 </div>
-                <p class="w-5/12">宋楚瑜得票率</p>
+                <p class="w-5/12">宋楚瑜得票數</p>
                 <p class="w-5/12 text-end text-orange-500">
                   {{ nationWorldVotesData.orangePartyVotesNum }}
                 </p>
