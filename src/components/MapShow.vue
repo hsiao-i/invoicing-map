@@ -13,12 +13,6 @@ const props = defineProps({
 
 const toThousands = inject('toThousands');
 
-// const formattedVotesData = props.formattedCountyVotesData;
-// const votesData = props.countyVotesData;
-console.log(props.countyVotesData);
-// console.log(formattedVotesData);
-// console.log(votesData);
-
 const height = 1200;
 const width = 1200;
 
@@ -56,7 +50,6 @@ const drawTaiwanCounty = () => {
 
   // 顯示地圖上縣市
   d3.json('/jsonData/taiwanCounty_topojson.json').then((data) => {
-    console.log(data);
     const geometries = topojson.feature(data, data.objects.COUNTY_MOI_1090820);
 
     const mapOfCounty = mapSvg
@@ -72,8 +65,6 @@ const drawTaiwanCounty = () => {
       .style('fill', (d) => {
         const countyVoteInfo = props.countyVotesData.find((county) => county.county === d.properties.COUNTYNAME);
 
-        console.log(props.countyVotesData);
-
         if (countyVoteInfo.greenPartyVotesPercentage
         > countyVoteInfo.bluePartyVotesPercentage && countyVoteInfo.orangePartyVotesPercentage) {
           return colorScales.green(countyVoteInfo.greenPartyVotesPercentage);
@@ -87,13 +78,7 @@ const drawTaiwanCounty = () => {
       // .data(votesData)
       .on('mouseover', (e, d) => {
         const hoverCounty = d.properties.COUNTYNAME;
-        console.log(hoverCounty);
-        console.log(props.countyVotesData);
         const hoverCountyVotesInfo = props.countyVotesData.find((county) => county.county === hoverCounty);
-
-        console.log(hoverCountyVotesInfo);
-        console.log(e);
-        console.log(d);
 
         /** tooltip 顯示的 html 內容 */
         const votesInfoTooltip = `<div class="w-1/3 bg-white z-10"><p class="text-center py-2 border-b-2 border-black">${hoverCountyVotesInfo.county}</p>
@@ -203,11 +188,8 @@ const drawTaiwanCounty = () => {
     function clicked(event, d) {
       const [[x0, y0], [x1, y1]] = d3.geoPath().bounds(d);
       event.stopPropagation();
-      // mapOfCounty.transition().style('fill', null);
-      // d3.select(this).transition().style('fill', 'pink');
 
       const [targetX, targetY] = d3.pointer(event, mapSvg.node());
-      console.log(targetX, targetY);
 
       mapSvg.transition().duration(750).call(
         zoom.transform,

@@ -29,7 +29,6 @@ const selectedArea = ref('');
 const getAllCounty = async () => {
   try {
     const res = await axios.get('/jsonData/AllCountyData.json');
-    console.log(res.data);
     allCountyData.value = res.data;
   } catch {
     Swal.fire({ text: '縣市列表資料載入失敗', icon: 'error' });
@@ -56,7 +55,6 @@ const getCountyVotes = async () => {
   try {
     const res = await axios.get('/jsonData/votingResult.json');
     countyVotesData.value = res.data;
-    console.log(countyVotesData.value);
   } catch {
     Swal.fire({ text: '選舉票數資料載入失敗', icon: 'error' });
   }
@@ -86,7 +84,6 @@ const formattedCountyVotesData = computed(() => {
     bluePartyVotesPercentage: county.bluePartyVotesPercentage.toFixed(1),
     greenPartyVotesPercentage: county.greenPartyVotesPercentage.toFixed(1),
   }));
-  console.log(formattedData);
   return formattedData;
 });
 
@@ -210,7 +207,6 @@ const nationWorldVotesData = computed(() => formattedCountyVotesData.value.find(
             </select>
           </div>
           <div class="w-1/5">
-            <!-- <label for="">區</label> -->
             <select
               name="townSelect"
               id="townSelect"
