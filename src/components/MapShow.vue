@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, inject } from 'vue';
+import { onMounted, inject, ref } from 'vue';
 import * as d3 from 'd3';
 import * as topojson from 'topojson-client';
 
@@ -11,6 +11,8 @@ const props = defineProps({
 });
 
 const toThousands = inject('toThousands');
+
+const screenWidth = ref(window.innerWidth);
 
 const height = 1200;
 const width = 1200;
@@ -129,7 +131,7 @@ const drawTaiwanCounty = () => {
           </div>
           <ul v-if="hoverCountyVotesInfo" class="mt-7">
             <li class="flex justify-between items-center py-1">
-              <div class="w-2/12">
+              <div class="w-2/12 md:block hidden">
                 <img src="src/assets/images/greenCirclePortrait.png" alt="蔡英文圓形肖像" width="42"/>
               </div>
               <p class="w-5/12 ml-1 text-center">蔡英文<br />得票數</p>
@@ -147,7 +149,7 @@ const drawTaiwanCounty = () => {
               </p>
             </li>
             <li class="flex justify-between items-center py-1">
-              <div class="w-2/12">
+              <div class="w-2/12 md:block hidden">
                 <img src="src/assets/images/orangeCirclePortrait.png" alt="宋楚瑜圓形肖像" width="42"/>
               </div>
               <p class="w-5/12 ml-1 text-center">宋楚瑜<br />得票數</p>
@@ -160,17 +162,28 @@ const drawTaiwanCounty = () => {
         </div></div>`;
         tooltipDiv
           .style('opacity', 1)
-          // .text('123');
           .html(votesInfoTooltip)
-
-          // .html(vueComponentHtml)
           .style('fill', 'black');
-      })
+      });
+
+    // 調整 tooltip 位置
+    function updateTooltipPosition() {
+      if (screenWidth.value < 768) {
+        tooltipDiv.style('left', '46.5%');
+      } else {
+        tooltipDiv.style('left', '64.5%');
+      }
+    }
+    mapOfCounty
       .on('mouseenter', function () {
-        // 將 tooltip 固定在右側
-        tooltipDiv
-          .style('left', '64.5%')
-          .style('top', '-299px');
+        // 將 tooltip 固定在右側 (還需監聽螢幕寬度)
+        tooltipDiv.style('top', '-299px');
+        updateTooltipPosition();
+
+        window.addEventListener('resize', () => {
+          screenWidth.value = window.innerWidth;
+          updateTooltipPosition();
+        });
 
         d3.select(this)
           .raise()
