@@ -49,7 +49,7 @@ const drawTaiwanCounty = () => {
   };
 
   // 顯示地圖上縣市
-  d3.json('/jsonData/taiwanCounty_topojson.json').then((data) => {
+  d3.json('jsonData/taiwanCounty_topojson.json').then((data) => {
     const geometries = topojson.feature(data, data.objects.COUNTY_MOI_1090820);
 
     const mapOfCounty = mapSvg
@@ -216,7 +216,7 @@ const drawTaiwanCounty = () => {
   });
 
   // 顯示地圖上鄉里
-  d3.json('/jsonData/taiwanTown_topojson.json').then((data) => {
+  d3.json('jsonData/taiwanTown_topojson.json').then((data) => {
     const geometries = topojson.feature(data, data.objects.TOWN_MOI_1120825);
     mapSvg
       .append('g')
