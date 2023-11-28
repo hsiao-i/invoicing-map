@@ -132,7 +132,7 @@ const drawTaiwanCounty = () => {
           <ul v-if="hoverCountyVotesInfo" class="mt-7">
             <li class="flex justify-between items-center py-1">
               <div class="w-2/12 md:block hidden">
-                <img src="src/assets/images/greenCirclePortrait.png" alt="蔡英文圓形肖像" width="42"/>
+                <img src="../assets/images/greenCirclePortrait.png" alt="蔡英文圓形肖像" width="42"/>
               </div>
               <p class="w-5/12 ml-1 text-center">蔡英文<br />得票數</p>
               <p class="w-5/12 text-end text-green-500">
@@ -141,7 +141,7 @@ const drawTaiwanCounty = () => {
             </li>
             <li class="flex justify-between items-center py-1">
               <div class="w-2/12 md:block hidden">
-                <img src="src/assets/images/blueCirclePortrait.png" alt="韓國瑜圓形肖像" width="42" />
+                <img src="/src/assets/images/blueCirclePortrait.png" alt="韓國瑜圓形肖像" width="42" />
               </div>
               <p class="w-5/12 ml-1 text-center">韓國瑜<br />得票數</p>
               <p class="w-5/12 text-end text-blue-500">
