@@ -205,24 +205,6 @@ const drawTaiwanCounty = () => {
     const zoom = d3.zoom().scaleExtent([1, 6]).on('zoom', zoomed);
     mapSvg.call(zoom);
 
-    function clicked(event, d) {
-      const [[x0, y0], [x1, y1]] = d3.geoPath().bounds(d);
-      event.stopPropagation();
-
-      const [targetX, targetY] = d3.pointer(event, mapSvg.node());
-
-      mapSvg.transition().duration(750).call(
-        zoom.transform,
-        d3.zoomIdentity
-          .translate(targetX, targetY)
-          .scale(Math.min(6.5, 0.9 / Math.max((x1 - x0) / width, (y1 - y0) / height)))
-
-          .translate(-targetX + 300, -targetY + 250),
-      );
-    }
-
-    mapOfCounty.on('click', clicked);
-
     function reset() {
       mapSvg.transition().duration(750).call(
         zoom.transform,
