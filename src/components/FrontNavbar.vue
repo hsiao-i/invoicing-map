@@ -7,8 +7,7 @@
             <img src="../assets/images/electionLogo.png" alt="2020總統大選開票地圖" width="300">
           </RouterLink>
         </h1>
-        <nav>
-          <!-- <RouterLink to="/">Home</RouterLink> -->
+        <nav class="sm:block hidden">
           <RouterLink to="/voteMap">開票地圖</RouterLink>
         </nav>
       </div>
