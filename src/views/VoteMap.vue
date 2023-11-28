@@ -40,7 +40,7 @@ onMounted(() => {
 /** 取得選舉得票數資料 */
 const getCountyVotes = async () => {
   try {
-    const res = await axios.get('/jsonData/votingResult.json');
+    const res = await axios.get('jsonData/votingResult.json');
     countyVotesData.value = res.data;
   } catch {
     Swal.fire({ text: '選舉票數資料載入失敗', icon: 'error' });
