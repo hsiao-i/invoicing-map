@@ -1,0 +1,232 @@
+[
+  {
+    "county": "全國",
+    "orangePartyVotesNum": 608590,
+    "bluePartyVotesNum": 5522119,
+    "greenPartyVotesNum": 8170231,
+    "totalVotesNum": 14300940,
+    "orangePartyVotesPercentage": 4.255594387501801,
+    "bluePartyVotesPercentage": 38.613678541410565,
+    "greenPartyVotesPercentage": 57.13072707108764
+  },
+  {
+    "county": "臺北市",
+    "orangePartyVotesNum": 70769,
+    "bluePartyVotesNum": 685830,
+    "greenPartyVotesNum": 875854,
+    "totalVotesNum": 1632453,
+    "orangePartyVotesPercentage": 4.3351324662945885,
+    "bluePartyVotesPercentage": 42.01223557431668,
+    "greenPartyVotesPercentage": 53.65263195938872
+  },
+  {
+    "county": "新北市",
+    "orangePartyVotesNum": 112620,
+    "bluePartyVotesNum": 959631,
+    "greenPartyVotesNum": 1393936,
+    "totalVotesNum": 2466187,
+    "orangePartyVotesPercentage": 4.566563687181873,
+    "bluePartyVotesPercentage": 38.91152617380596,
+    "greenPartyVotesPercentage": 56.521910139012164
+  },
+  {
+    "county": "桃園市",
+    "orangePartyVotesNum": 63132,
+    "bluePartyVotesNum": 529749,
+    "greenPartyVotesNum": 718260,
+    "totalVotesNum": 1311141,
+    "orangePartyVotesPercentage": 4.815042775719774,
+    "bluePartyVotesPercentage": 40.4036636791924,
+    "greenPartyVotesPercentage": 54.78129354508783
+  },
+  {
+    "county": "臺中市",
+    "orangePartyVotesNum": 84800,
+    "bluePartyVotesNum": 646366,
+    "greenPartyVotesNum": 967304,
+    "totalVotesNum": 1698470,
+    "orangePartyVotesPercentage": 4.992728749992641,
+    "bluePartyVotesPercentage": 38.05577961341678,
+    "greenPartyVotesPercentage": 56.95149163659058
+  },
+  {
+    "county": "臺南市",
+    "orangePartyVotesNum": 41075,
+    "bluePartyVotesNum": 339702,
+    "greenPartyVotesNum": 786471,
+    "totalVotesNum": 1167248,
+    "orangePartyVotesPercentage": 3.5189608377996793,
+    "bluePartyVotesPercentage": 29.102812769865533,
+    "greenPartyVotesPercentage": 67.3782263923348
+  },
+  {
+    "county": "高雄市",
+    "orangePartyVotesNum": 55309,
+    "bluePartyVotesNum": 610896,
+    "greenPartyVotesNum": 1097621,
+    "totalVotesNum": 1763826,
+    "orangePartyVotesPercentage": 3.135740146703813,
+    "bluePartyVotesPercentage": 34.63470886584051,
+    "greenPartyVotesPercentage": 62.22955098745568
+  },
+  {
+    "county": "新竹縣",
+    "orangePartyVotesNum": 18435,
+    "bluePartyVotesNum": 154224,
+    "greenPartyVotesNum": 152380,
+    "totalVotesNum": 325039,
+    "orangePartyVotesPercentage": 5.671627097056046,
+    "bluePartyVotesPercentage": 47.447844720172036,
+    "greenPartyVotesPercentage": 46.88052818277191
+  },
+  {
+    "county": "苗栗縣",
+    "orangePartyVotesNum": 15222,
+    "bluePartyVotesNum": 164345,
+    "greenPartyVotesNum": 147034,
+    "totalVotesNum": 326601,
+    "orangePartyVotesPercentage": 4.66073282078132,
+    "bluePartyVotesPercentage": 50.31980918613231,
+    "greenPartyVotesPercentage": 45.01945799308636
+  },
+  {
+    "county": "彰化縣",
+    "orangePartyVotesNum": 35060,
+    "bluePartyVotesNum": 291835,
+    "greenPartyVotesNum": 436336,
+    "totalVotesNum": 763231,
+    "orangePartyVotesPercentage": 4.593628927546182,
+    "bluePartyVotesPercentage": 38.2367854555174,
+    "greenPartyVotesPercentage": 57.169585616936416
+  },
+  {
+    "county": "南投縣",
+    "orangePartyVotesNum": 13315,
+    "bluePartyVotesNum": 133791,
+    "greenPartyVotesNum": 152046,
+    "totalVotesNum": 299152,
+    "orangePartyVotesPercentage": 4.450914585227577,
+    "bluePartyVotesPercentage": 44.72341819543242,
+    "greenPartyVotesPercentage": 50.82566721934
+  },
+  {
+    "county": "雲林縣",
+    "orangePartyVotesNum": 15331,
+    "bluePartyVotesNum": 138341,
+    "greenPartyVotesNum": 246116,
+    "totalVotesNum": 399788,
+    "orangePartyVotesPercentage": 3.834782434690386,
+    "bluePartyVotesPercentage": 34.6035899026484,
+    "greenPartyVotesPercentage": 61.56162766266121
+  },
+  {
+    "county": "嘉義縣",
+    "orangePartyVotesNum": 11138,
+    "bluePartyVotesNum": 98810,
+    "greenPartyVotesNum": 197342,
+    "totalVotesNum": 307290,
+    "orangePartyVotesPercentage": 3.6245891503140357,
+    "bluePartyVotesPercentage": 32.155293045657196,
+    "greenPartyVotesPercentage": 64.22011780402876
+  },
+  {
+    "county": "屏東縣",
+    "orangePartyVotesNum": 14021,
+    "bluePartyVotesNum": 179353,
+    "greenPartyVotesNum": 317676,
+    "totalVotesNum": 511050,
+    "orangePartyVotesPercentage": 2.74356716563937,
+    "bluePartyVotesPercentage": 35.09500048918893,
+    "greenPartyVotesPercentage": 62.161432345171704
+  },
+  {
+    "county": "宜蘭縣",
+    "orangePartyVotesNum": 10739,
+    "bluePartyVotesNum": 90010,
+    "greenPartyVotesNum": 173657,
+    "totalVotesNum": 274406,
+    "orangePartyVotesPercentage": 3.913544164486199,
+    "bluePartyVotesPercentage": 32.80176089444108,
+    "greenPartyVotesPercentage": 63.284694941072715
+  },
+  {
+    "county": "花蓮縣",
+    "orangePartyVotesNum": 6869,
+    "bluePartyVotesNum": 111834,
+    "greenPartyVotesNum": 66509,
+    "totalVotesNum": 185212,
+    "orangePartyVotesPercentage": 3.7087229769129433,
+    "bluePartyVotesPercentage": 60.38161674189577,
+    "greenPartyVotesPercentage": 35.909660281191286
+  },
+  {
+    "county": "臺東縣",
+    "orangePartyVotesNum": 4163,
+    "bluePartyVotesNum": 67413,
+    "greenPartyVotesNum": 44092,
+    "totalVotesNum": 115668,
+    "orangePartyVotesPercentage": 3.599093958571083,
+    "bluePartyVotesPercentage": 58.281460732441126,
+    "greenPartyVotesPercentage": 38.11944530898779
+  },
+  {
+    "county": "澎湖縣",
+    "orangePartyVotesNum": 2583,
+    "bluePartyVotesNum": 20911,
+    "greenPartyVotesNum": 27410,
+    "totalVotesNum": 50904,
+    "orangePartyVotesPercentage": 5.074257425742575,
+    "bluePartyVotesPercentage": 41.079286500078574,
+    "greenPartyVotesPercentage": 53.84645607417885
+  },
+  {
+    "county": "基隆市",
+    "orangePartyVotesNum": 11878,
+    "bluePartyVotesNum": 99360,
+    "greenPartyVotesNum": 114966,
+    "totalVotesNum": 226204,
+    "orangePartyVotesPercentage": 5.251012360524129,
+    "bluePartyVotesPercentage": 43.924952697565026,
+    "greenPartyVotesPercentage": 50.824034941910845
+  },
+  {
+    "county": "新竹市",
+    "orangePartyVotesNum": 14103,
+    "bluePartyVotesNum": 102725,
+    "greenPartyVotesNum": 144274,
+    "totalVotesNum": 261102,
+    "orangePartyVotesPercentage": 5.401337408369143,
+    "bluePartyVotesPercentage": 39.342862176467435,
+    "greenPartyVotesPercentage": 55.25580041516343
+  },
+  {
+    "county": "嘉義市",
+    "orangePartyVotesNum": 6204,
+    "bluePartyVotesNum": 56269,
+    "greenPartyVotesNum": 99265,
+    "totalVotesNum": 161738,
+    "orangePartyVotesPercentage": 3.8358332612002126,
+    "bluePartyVotesPercentage": 34.790216275705156,
+    "greenPartyVotesPercentage": 61.37395046309464
+  },
+  {
+    "county": "金門縣",
+    "orangePartyVotesNum": 1636,
+    "bluePartyVotesNum": 35948,
+    "greenPartyVotesNum": 10456,
+    "totalVotesNum": 48040,
+    "orangePartyVotesPercentage": 3.4054954204829313,
+    "bluePartyVotesPercentage": 74.8293089092423,
+    "greenPartyVotesPercentage": 21.76519567027477
+  },
+  {
+    "county": "連江縣",
+    "orangePartyVotesNum": 188,
+    "bluePartyVotesNum": 4776,
+    "greenPartyVotesNum": 1226,
+    "totalVotesNum": 6190,
+    "orangePartyVotesPercentage": 3.037156704361874,
+    "bluePartyVotesPercentage": 77.15670436187399,
+    "greenPartyVotesPercentage": 19.806138933764135
+  }
+]
