@@ -23,8 +23,6 @@ import ProgressPercentage from '../components/ProgressPercentage.vue';
 const countyVotesData = ref([]);
 
 const allCountyData = ref([]);
-const selectedCounty = ref('');
-const selectedArea = ref('');
 
 const getAllCounty = async () => {
   try {
@@ -37,17 +35,6 @@ const getAllCounty = async () => {
 
 onMounted(() => {
   getAllCounty();
-});
-
-/** 下拉選單，依照縣市顯示區 */
-const filterArea = computed(() => {
-  if (selectedCounty.value) {
-    const filter = allCountyData.value.find(
-      (county) => county.CityName === selectedCounty.value,
-    );
-    return filter;
-  }
-  return '';
 });
 
 /** 取得選舉得票數資料 */
@@ -106,7 +93,7 @@ const nationWorldVotesData = computed(() => formattedCountyVotesData.value.find(
                   <div
                     :style="`width: ${nationWorldVotesData.greenPartyVotesPercentage}%`"
                     class="shadow-none flex flex-col text-center whitespace-nowrap
-                     justify-center bg-green-500 text-white "
+                    justify-center bg-green-500 text-white "
                   >
                     <p class="cursor-default">
 
@@ -126,7 +113,7 @@ const nationWorldVotesData = computed(() => formattedCountyVotesData.value.find(
                   <div
                     :style="`width: ${nationWorldVotesData.orangePartyVotesPercentage}%`"
                     class="shadow-none flex flex-col text-center whitespace-nowrap
-                    text-white justify-center bg-orange-500 text-white"
+                    text-white justify-center bg-orange-500"
                   >
                   <p class="cursor-default">
                     {{ nationWorldVotesData.orangePartyVotesPercentage }}%
@@ -186,51 +173,8 @@ const nationWorldVotesData = computed(() => formattedCountyVotesData.value.find(
         </div>
       </div>
       <div class="w-full md:w-2/3">
-        <div
-          class="flex items-center justify-center border-x-2 border-t-2 border-black pt-1 mb-3"
-        >
-          <div class="w-1/5">
-            <label for="countySelect" class="text-center block">搜尋鄰里</label>
-          </div>
-          <div class="mr-3">
-            <select
-              name="countySelect"
-              id="countySelect"
-              v-model="selectedCounty"
-              placeholder="請選擇縣市"
-              class="border-l-2 border-b-2 border-black h-9 w-full text-center"
-            >
-              <option value="">請選擇縣市</option>
-              <option v-for="county in allCountyData" :key="county.CityName">
-                {{ county.CityName }}
-              </option>
-            </select>
-          </div>
-          <div class="w-1/5">
-            <select
-              name="townSelect"
-              id="townSelect"
-              v-model="selectedArea"
-              placeholder="請選擇區"
-              class="border-l-2 border-b-2 border-black h-9 w-full text-center"
-            >
-              <option value="">請選擇區</option>
-              <option v-for="area in filterArea?.AreaList" :key="area.ZipCode">
-                {{ area.AreaName }}
-              </option>
-            </select>
-          </div>
-          <div class="ml-3 w-1/5">
-            <button
-              type="button"
-              class="flex justify-center items-center w-full"
-            >
-              <span class="material-icons mr-1">search</span>
-              <span class="material-icons-outlined">info</span>
-            </button>
-          </div>
-        </div>
         <div class="bg-gray-100">
+          <p class="text-center py-2 text-gray-500">滑鼠移入縣市可觀看詳細票數和比例</p>
           <MapShow :countyVotesData="countyVotesData"
           ></MapShow>
         </div>
