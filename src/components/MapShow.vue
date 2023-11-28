@@ -202,7 +202,7 @@ const drawTaiwanCounty = () => {
     function zoomed() {
       mapSvg.attr('transform', d3.zoomTransform(this).toString());
     }
-    const zoom = d3.zoom().scaleExtent([1, 6]).on('zoom', zoomed);
+    const zoom = d3.zoom().scaleExtent([1, 1]).on('zoom', zoomed);
     mapSvg.call(zoom);
 
     function reset() {
