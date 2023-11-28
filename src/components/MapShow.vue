@@ -240,14 +240,6 @@ onMounted(() => {
 <template>
 
   <div class="overflow-hidden relative">
-    <div class="absolute top-3 left-3 z-10">
-      <button type="button" >
-
-        <span class="material-icons-outlined " style="font-size: 30px;">
-          arrow_back
-        </span>
-      </button>
-    </div>
 
     <svg width="100%" height="80vh" viewBox="170 110 300 350" class="map">
     </svg>
