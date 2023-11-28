@@ -6,6 +6,7 @@ import eslintPlugin from 'vite-plugin-eslint';
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: process.env.NODE_ENV === 'production' ? '/invoicing-map/' : '/',
   plugins: [
     vue(),
     eslintPlugin({
