@@ -1,35 +1,31 @@
-# voteMap
+# The F2E 2023 - 總統開票全臺地圖
 
-This template should help get you started developing with Vue 3 in Vite.
+主要功能為觀看全臺縣市於 2020 總統大選的各候選人得票數
 
-## Recommended IDE Setup
+- 用設計稿 [wala 樹懶設計](https://2023.thef2e.com/users/12061579704049918951)
+- 參考 [天下雜誌 2020 開票地圖](https://web.cw.com.tw/2020-taiwan-presidential-election/)
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+## 使用主要技術
 
-## Customize configuration
+- Vue3.js (Composition API)
+- Vite 建置工具
+- D3.js
+- Tailwind css
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
+## 建置專案
 
 ```sh
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+### 編譯專案、開發模式熱更新 Compile and Hot-Reload for Development
 
 ```sh
 npm run dev
 ```
 
-### Compile and Minify for Production
+### 打包專案
 
 ```sh
 npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
 ```
