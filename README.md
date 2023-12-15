@@ -1,8 +1,10 @@
 # The F2E 2023 - 總統開票全臺地圖
 
+- [Demo](https://hsiao-i.github.io/invoicing-map/)
+
 主要功能為觀看全臺縣市於 2020 總統大選的各候選人得票數
 
-- 用設計稿 [wala 樹懶設計](https://2023.thef2e.com/users/12061579704049918951)
+- 採用設計稿 [wala 樹懶設計](https://2023.thef2e.com/users/12061579704049918951)
 - 參考 [天下雜誌 2020 開票地圖](https://web.cw.com.tw/2020-taiwan-presidential-election/)
 
 ## 使用主要技術
